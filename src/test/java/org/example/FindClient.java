@@ -6,20 +6,27 @@ package org.example;
 //
 
 // FindClient.java
-import java.rmi.*;
-import java.rmi.server.*;
+
+import org.junit.jupiter.api.Test;
+import java.rmi.Naming;
+
 public class FindClient {
 
-    public static void main(String args[]) {
+    @Test
+    void testFindLine() {
         try {
-            if (System.getSecurityManager() == null) {
-                System.setSecurityManager(new SecurityManager());
-            }
+            // can't set the security manager with eclipse
+            // if (System.getSecurityManager() == null) {
+            //     System.setSecurityManager(new SecurityManager());
+            // }
 
             //Assuming the server is running on orion
             String name = "rmi://" + "127.0.0.1:8099/FindServer";
 
+            // RMI lookup
             Find ref = (Find)Naming.lookup(name);
+
+            // invoking
             String results = ref.findLine("BCD");
             if (results == null)
                 System.err.println("** not found **");

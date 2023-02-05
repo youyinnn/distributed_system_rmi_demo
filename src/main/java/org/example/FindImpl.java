@@ -32,7 +32,7 @@ public class FindImpl extends UnicastRemoteObject implements Find {
     } //end of constructor
 
     public String findLine(String keyword) {
-        System.out.println("Calling");
+        System.out.println("Invoked");
         if (keyword == null)
             return null;
         keyword = keyword.toLowerCase();
@@ -47,9 +47,10 @@ public class FindImpl extends UnicastRemoteObject implements Find {
     public static void main(String args[]) {
         try {
 
-            if (System.getSecurityManager() == null) {
-                System.setSecurityManager(new SecurityManager());
-            }
+            // can't set the security manager with eclipse
+            // if (System.getSecurityManager() == null) {
+            //     System.setSecurityManager(new SecurityManager());
+            // }
 
             final URL book = FindImpl.class.getClassLoader().getResource("phonebook.txt");
             assert book != null;
